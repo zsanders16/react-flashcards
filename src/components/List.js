@@ -3,20 +3,16 @@ import Card from './Card'
 
 class List extends React.Component{
     render(){
-        let cards = this.props.cards.map((card) => {
-            return (<Card key={card.id} {...card} />)
-        })
+      let counter = 0
+      let cards = this.props.cards.map( (card) => {
+        return <Card key={counter++} {...card}/>
+      })
         return (
-            <ul>
-                {cards}
-            </ul>
+          <div className='row'>
+            {cards}
+          </div>
         )
-
-
     }
-
-
-
 }
 
 

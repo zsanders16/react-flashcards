@@ -4,15 +4,12 @@ import CardForm from './CardForm'
 
 
 class FlashCardApp extends React.Component{
-    state = { cards: [], id: 0, showForm: false}
+    state = { cards: [], showForm: false}
 
-
-
-    addCard = (title, frontSide, backSide) => {
-        let { cards, id } = this.state;
-        let nextId = id + 1;
-        let card = { title, id: nextId, frontSide, backSide }
-        this.setState({ cards: [...cards, card], id: nextId })
+    addCard = (card) => {
+        let cards = this.state
+        this.setState({ cards: [...cards, card] })
+        this.toggleForm()
     }
 
 
@@ -23,10 +20,10 @@ class FlashCardApp extends React.Component{
     }
 
     form = () => (
-        <CardForm addCard={this.addCard} />
+      <CardForm addCard={this.addCard} />
     )
 
-    card = () => (
+    showCards = () => (
       <List cards={this.state.cards} />
     )
 
@@ -39,7 +36,7 @@ class FlashCardApp extends React.Component{
             <div className='container'>
                 <h2>Flash Cards</h2>
                 <button className='btn' onClick={this.toggleForm}>{ showForm ? 'Hide' : 'Show' } New Card Form</button>
-                { showForm ? this.form() : this.card() }
+                { showForm ? this.form() : this.showCards() }
             </div>
         )
     }
